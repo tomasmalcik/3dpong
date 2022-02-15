@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="banner">
+        <div class="bannerText">
+
+        </div>
+    </div>
+    <div id="controls">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <div class="score">
+        <div class="left">0</div>
+        <div class="clock">0:00</div>
+        <div class="right">0</div>
+    </div>
+    <div class="menu defaultMenu">
+        <div class="filter"></div>
+        <h2>Pong3D</h2>
+        <div class="item" onclick="goTo('.defaultMenu', '.playMenu')">
+            <a href="#">Play</a>
+        </div>
+        <div class="item" onclick="goTo('.defaultMenu', '.settingsMenu')">
+            <a href="#">Settings</a>
+        </div>
+        <div class="item" onclick="goTo('.defaultMenu', '.helpMenu')">
+            <a href="#">Help</a>
+        </div>
+    </div>
+    <div class="menu playMenu">
+        <div class="filter"></div>
+        <div class="col-lg-6">
+            <h3>Play Settings</h3>
+            <div class="row">
+                <div class="col-lg-6 playstyle">
+                    <h4>Choose playstyle</h4>
+                    <a href="#" data="1" class="mode selected" onclick="selectMode(this)">Player vs Player</a>
+                    <a data="2" href="#" class="mode" onclick="selectMode(this)">Player vs PC</a>
+                </div>
+                <div class="col-lg-6 details">
+                    <div class="pvp">
+                        <label for="pcDiff">Oponent difficulty</label>
+                        <input type="range" class="styled-slider slider-progress" name="pcDiff" id="pcDiff" />
+                    </div>
+                    <div class="group row">
+                        <div class="col-lg-6">
+                            Maximal score
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="number" name="maxScore" id="maxScore" min="3" max="50" value="7" />
+                        </div>
+                    </div>
+                    <div class="group row">
+                        <div class="col-lg-6">
+                            Match Time (seconds)
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="number" name="matchLength" id="matchLength" min="60" max="3600" value="300" />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="lower">
+                <button onclick="goTo('.playMenu', '.defaultMenu')" class="btn btn-default">Back</button>
+                <button onclick="play()" class="btn btn-green">Play</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu settingsMenu">
+        <div class="filter"></div>
+        <div class="col-lg-4">
+            <h3>Settings</h3>
+            <div class="row group" style="margin: 0px -15px;">
+                <div class="col-lg-6">
+                    Debug mode
+                </div>
+                <div class="col-lg-6">
+                    <label for="debug" class="switch">
+                        <input onclick="changeDebug()" type="checkbox" name="debug" id="debug" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row group hard" style="margin: 0px -15px;">
+                <div class="col-lg-6">
+                    Hard mode
+                </div>
+                <div class="col-lg-6">
+                    <label for="hard" class="switch">
+                        <input type="checkbox" onclick="changeHard()" name="hard" id="hard" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="group information">
+                <h4>Information</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        Author
+                    </div>
+                    <div class="col-lg-6">
+                        Tomáš Malčík
+                    </div>
+                </div>
+                <div class="row" onclick="clickOn()">
+                    <div class="col-lg-6">
+                        Version
+                    </div>
+                    <div class="col-lg-6">
+                        1.0.0
+                    </div>
+                </div>
+            </div>
+            <div class="lower">
+                <button onclick="goTo('.settingsMenu', '.defaultMenu')" class="btn btn-debug">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="menu helpMenu">
+        <div class="filter"></div>
+        <div class="col-lg-6">
+            <h3>Help</h3>
+        <div class="group row">
+            <h4>Movement</h4>
+            <div class="col-lg-6">
+                <h5>Player1</h5>
+                <ul>
+                    <li><span class="button">A</span> Left</li>
+                    <li><span class="button">B</span> Right</li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <h5>Player2</h5>
+                <ul>
+                    <li><span class="button">&lt;</span> Left</li>
+                    <li><span class="button">&gt;</span> Right</li>
+                </ul>
+            </div>
+        </div>
+        <div class="group row" style="padding: 0px 15px">
+            <h4>Actions</h4>
+            <ul style="padding-left: 15px;">
+                <li>
+                    <span class="button">C</span> Change camera position <br/>
+                    <small>Playing against CPU allows for one more camera position</small>
+                </li>
+                <li><span class="button">SPACE</span> Pause Game / Resume Game</li>
+                <li><span class="button">ESC</span> Exit Game</li>
+            </ul>
+        </div>
+        <div class="group row">
+            This game has a hidden secret in it. You can unlock it by clicking 7 times on some text in either settings or play settings.
+            Good luck playing when you find it.
+        </div>
+        <div class="lower">
+            <button class="btn btn-default" onclick="goTo('.helpMenu', '.defaultMenu')">Back</button>
+        </div>
+        </div>
+    </div>
+    <div class="countDown">
+        3
+    </div>
+    <div class="modalWindow">
+        <div class="exit modal-item">
+            <h3>Are you Sure?</h3>
+            <div class="lower">
+                <button onclick="closeModal()" class="btn btn-default">No</button>
+                <button onclick="location.reload()" class="btn btn-default">Yes</button>
+            </div>
+        </div>
+        <div class="winner modal-item" style="display: none">
+            <h3>Player1 won!</h3>
+            <div class="lower">
+                <button onclick="location.reload()" class="btn btn-default">Exit</button>
+                <button onclick="rematch()"class="btn btn-green">Rematch!</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./Scripts/threejs.js"></script>
+<script src="./Scripts/indexHandler.js"></script>
+<script src="./Scripts/Timer.js"></script>
+<script src="./Scripts/keyboardHandler.js"></script>
+<script src="./Scripts/playfields/default.js"></script>
+<script src="./Scripts/game.js"></script>
+<script>
+
+</script>
+</html>

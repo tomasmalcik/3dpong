@@ -1,0 +1,405 @@
+/* Global styles */
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.banner {
+    position: absolute;
+    min-width: 300px;
+    height: 60px;
+    background: rgb(248, 215, 218);
+    top: 15px;
+    border-right: 10px solid rgb(245, 198, 203);
+    transition: all 0.4s ease-in-out 0s;
+    left: -100%;
+    display: flex;
+    padding: 0px 15px;
+    align-items: center;
+    color: #721c24;
+    z-index: 99;
+}
+
+.banner.shown {
+    left: 0;
+}
+
+#controls{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 300px;
+    min-height: 100px;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 15px;
+    font-size: 13px;
+
+}
+
+.menu {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu h2 {
+    z-index: 999;
+    font-size: 60px;
+    animation: breathing 2s linear infinite normal;
+    cursor: pointer;
+}
+
+.menu .item {
+    z-index: 999;
+    position: relative;
+    width: 30%;
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    cursor: pointer;
+    margin-bottom: 45px;
+    transition: .3s ease-in-out;
+}
+
+.menu .item:hover {
+    transform: scale(1.2)
+}
+
+
+.menu .item:last-child {
+    margin-bottom: 0;
+}
+
+.menu .item a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.menu .filter {
+    width: 100%;
+    height: 100%;
+    background: url("../imgs/bg.png");
+    background-position: center;
+    background-size: cover;
+    filter: blur(5px);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.playMenu {
+    display: none;
+}
+
+.settingsMenu {
+    display: none;
+}
+
+.helpMenu {
+    display: none;
+}
+
+.playMenu > .col-lg-6,
+.settingsMenu > .col-lg-4,
+.helpMenu > .col-lg-6 {
+    z-index: 999;
+    background: rgba(0,0,0,0.8)
+}
+
+.playMenu h3,
+.settingsMenu h3,
+.helpMenu h3 {
+    width: 100%;
+    padding-bottom: 15px;
+    color: white;
+    border-bottom: rgba(155,155,155,0.3) 1px solid;
+    padding-top: 15px;
+    margin: 0;
+    text-align: center;
+}
+
+.playMenu .playstyle {
+    margin-top: 30px;
+    padding: 0px 45px;
+    display: flex;
+    flex-direction: column;
+}
+
+.playMenu .playstyle h4 {
+    color: white;
+}
+
+.playMenu .playstyle a {
+    width: 80%;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    border: 1px white solid;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.playMenu .playstyle a:hover,
+.playMenu .playstyle a.selected {
+    background: white;
+    color: black;
+}
+
+.playMenu .details {
+    margin-top: 30px;
+}
+
+.playMenu .details .pvp {
+    padding: 0px 30px;
+    color: white;
+    display: none;
+}
+
+.playMenu .details #pcDiff {
+    width: 100%;
+}
+
+.playMenu .details .group,
+.settingsMenu .group,
+.helpMenu .group {
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.playMenu .details .group input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px white solid;
+    width: 100%;
+    color: white;
+}
+
+
+.lower {
+    padding: 15px 33px;
+    border-top: 1px rgba(155,155,155,0.3) solid;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lower .btn {
+    border-radius: 0;
+    border: 1px white solid;
+    color: white;
+    font-size: 17px;
+    padding: 8px 20px;
+}
+
+.lower .btn.btn-green {
+    border-color: greenyellow;
+}
+
+.lower .btn:hover {
+    background: white;
+    color: black;
+}
+
+.lower .btn.btn-green:hover {
+    background-color: greenyellow;
+    color: black;
+}
+
+.helpMenu .group h4 {
+    margin-bottom: 15px;
+    padding-left: 0;
+}
+
+.helpMenu .group ul {
+    padding: 0;
+    list-style-type: none;
+    margin-top: 15px;
+}
+
+.helpMenu .group ul li {
+    margin-bottom: 15px;
+}
+
+.helpMenu .button {
+    padding: 2.5px 5px;
+    color: black;
+    background: white;
+    border-radius: 0.25rem;
+    margin-right: 15px;    
+}
+
+.modalWindow {
+    position: absolute;
+    width: 40%;
+    height: 30vh;
+    background: rgba(0,0,0,0.95);
+    padding: 30px;
+    display: none;
+    top: 35vh;
+}
+
+.settingsMenu .group.row .col-lg-6:last-child {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.settingsMenu .hard {
+    display: none;
+}
+
+.settingsMenu .information .row {
+    padding: 10px 0px;
+    border-bottom: 1px rgba(100,100,100,0.3) solid;
+}
+
+.modalWindow h3 {
+    color: white;
+}
+
+.modalWindow .lower {
+    padding: 0;
+    padding-top: 60px;
+}
+
+.score {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    color: white;
+    /* justify-self: center; */
+    top: 30px;
+}
+
+.score div {
+    padding: 15px;
+}
+
+.score .left, .score .right {
+    font-size: 20px;
+}
+
+.score .clock {
+    border-left: 1px rgba(155,155,155,0.5) dashed;
+    border-right: 1px rgba(155,155,155,0.5) dashed;
+}
+.countDown {
+    position: absolute;
+    top: 0;
+    height: 100px;
+    width: 100px;
+    background: black;
+    top: calc(50vh - 50px);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    display: none;
+}
+
+
+
+/* Breathing animation */
+@keyframes breathing {
+    0% {
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  
+    25% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+  
+    60% {
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  
+    100% {
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+  }
+  
+
+
+
+/* checkbox input styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.switch input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+.switch input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+.switch input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
